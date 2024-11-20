@@ -235,9 +235,5 @@ def index():
     return render_template_string(html_template, predicted_cost=None, ship_fee=None)
 
 
-def open_browser():
-    webbrowser.open_new('http://127.0.0.1:5001/')
-
 if __name__ == '__main__':
-    Timer(1, open_browser).start()
-    app.run(port=5001, debug=True, use_reloader=False)
+    app.run()
