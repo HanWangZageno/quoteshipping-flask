@@ -1,4 +1,4 @@
 Flask==2.3.2
-abacusai==0.45.2
+abacusai==0.45.0
 python-dateutil==2.8.2
 gunicorn==21.1.0
