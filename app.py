@@ -70,7 +70,7 @@ def predict_shipping_cost(data):
             "supplier_id": data.get('supplier_id'),
             "supplier_name": data.get('supplier_name'),
             "supplier_parent_name": data['parent_name'],
-            "supplier_country_avg_shipping_cost": float(data['avg_shipping_cost']),
+            "supplier_country_avg_shipping_cost":data['avg_shipping_cost'],
             "vendorpo_supplier_category": data['supplier_category'],
             "country": data.get('country'),
             "transaction_type": "reseller",
