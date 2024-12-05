@@ -192,7 +192,7 @@ def index():
                 <input type="text" id="country" name="country" value="{{ request.form.get('country', '') }}">
                 
                 <label for="order_created_date">Order Created Date (YYYY-MM-DD):</label>
-                <input type="text" id="order_created_date" name="order_created_date" pattern="\d{4}-\d{2}-\d{2}" placeholder="YYYY-MM-DD" required value="{{ request.form.get('order_created_date', '') }}">
+                <input type="text" id="order_created_date" name="order_created_date" pattern="\d{4}-\d{2}-\d{2}" placeholder="YYYY-MM-DD" value="{{ request.form.get('order_created_date', '') }}">
                 
                 <label for="ship_to_address_line_1">Ship to Address Line 1:</label>
                 <input type="text" id="ship_to_address_line_1" name="ship_to_address_line_1" value="{{ request.form.get('ship_to_address_line_1', '') }}">
