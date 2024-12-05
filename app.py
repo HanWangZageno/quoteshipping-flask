@@ -1,5 +1,6 @@
 from flask import Flask, request, render_template_string
 from abacusai import ApiClient
+from abacusai import PredictionClient
 import dateutil.parser
 import logging
 import webbrowser
