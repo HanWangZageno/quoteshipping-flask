@@ -5,7 +5,7 @@ import logging
 import webbrowser
 from threading import Timer
 
-api_key = 's2_771c05ba79d349f3ae6b62bbef3217ca'
+api_key = 's2_6821adb8678e4d65ab167c8c2425e6b9'
 client = ApiClient(api_key) 
 
 app = Flask(__name__)
