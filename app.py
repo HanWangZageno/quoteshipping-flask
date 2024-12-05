@@ -22,7 +22,7 @@ def get_latest_deployment_info():
             "deployment_token": "b76035fb833a4d8abae047a4b3c6bd42"  #
         }
         logging.info(f"Using hardcoded deployment ID: {deployment_info['deployment_id']}")
-        return deployment_info['deployment_id'], "your_hardcoded_deployment_token_here"
+        return deployment_info['deployment_id'], "bcc79e06e"
     except Exception as e:
         logging.error(f"Error fetching deployment info: {str(e)}")
         raise
