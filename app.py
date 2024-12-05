@@ -12,20 +12,8 @@ app = Flask(__name__)
 logging.basicConfig(level=logging.INFO)
 
 PROJECT_ID = "1531b15134"
-
-# Replacing the get_latest_deployment_info with a hardcoded deployment ID
-def get_latest_deployment_info():
-    try:
-        # Hardcoding the deployment ID
-        deployment_info = {
-            "deployment_id": "bcc79e06e",  # Hardcoded deployment ID
-            "deployment_token": "b76035fb833a4d8abae047a4b3c6bd42"  #
-        }
-        logging.info(f"Using hardcoded deployment ID: {deployment_info['deployment_id']}")
-        return deployment_info['deployment_id'], "bcc79e06e"
-    except Exception as e:
-        logging.error(f"Error fetching deployment info: {str(e)}")
-        raise
+deployment_token='b76035fb833a4d8abae047a4b3c6bd42'
+deployment_id='bcc79e06e'
 
 def get_supplier_info(supplier_id, country):
     try:
