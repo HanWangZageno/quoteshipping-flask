@@ -13,22 +13,16 @@ logging.basicConfig(level=logging.INFO)
 
 PROJECT_ID = "1531b15134"
 
+# Replacing the get_latest_deployment_info with a hardcoded deployment ID
 def get_latest_deployment_info():
     try:
-        deployments = client.list_deployments(project_id=PROJECT_ID)
-        sorted_deployments = sorted(deployments, key=lambda d: dateutil.parser.parse(d.created_at), reverse=True)
-        
-        if not sorted_deployments:
-            raise ValueError("No deployments found for the project.")
-        
-        latest_deployment = sorted_deployments[0]
-        deployment_tokens = client.list_deployment_tokens(project_id=PROJECT_ID)
-        
-        if not deployment_tokens:
-            raise ValueError("No deployment tokens found for the project.")
-        
-        logging.info(f"Using deployment ID: {latest_deployment.id}")
-        return latest_deployment.id, deployment_tokens[0].deployment_token
+        # Hardcoding the deployment ID
+        deployment_info = {
+            "deployment_id": "bcc79e06e",  # Hardcoded deployment ID
+            "deployment_token": "b76035fb833a4d8abae047a4b3c6bd42"  #
+        }
+        logging.info(f"Using hardcoded deployment ID: {deployment_info['deployment_id']}")
+        return deployment_info['deployment_id'], "your_hardcoded_deployment_token_here"
     except Exception as e:
         logging.error(f"Error fetching deployment info: {str(e)}")
         raise
