@@ -1,20 +1,19 @@
 from flask import Flask, request, render_template_string
 from abacusai import ApiClient
-from abacusai import PredictionClient
 import dateutil.parser
 import logging
 import webbrowser
 from threading import Timer
 
-api_key = 's2_6821adb8678e4d65ab167c8c2425e6b9'
+api_key = 's2_771c05ba79d349f3ae6b62bbef3217ca'
 client = ApiClient(api_key) 
 
 app = Flask(__name__)
 logging.basicConfig(level=logging.INFO)
 
-PROJECT_ID = "1531b15134"
-deployment_token='b76035fb833a4d8abae047a4b3c6bd42'
-deployment_id='bcc79e06e'
+deployment_id = 'bcc79e06e'
+deployment_token = 'b76035fb833a4d8abae047a4b3c6bd42'
+
 
 def get_supplier_info(supplier_id, country):
     try:
@@ -36,8 +35,6 @@ def get_supplier_info(supplier_id, country):
 
 def predict_shipping_cost(data):
     try:
-        deployment_id, deployment_token = get_latest_deployment_info()
-        
         supplier_info = get_supplier_info(data['supplier_id'], data['country'])
         if supplier_info is not None:
             data.update(supplier_info)
@@ -53,7 +50,7 @@ def predict_shipping_cost(data):
             "supplier_id": data.get('supplier_id'),
             "supplier_name": data.get('supplier_name'),
             "supplier_parent_name": data['parent_name'],
-            "supplier_country_avg_shipping_cost":data['avg_shipping_cost'],
+            "supplier_country_avg_shipping_cost": float(data['avg_shipping_cost']),
             "vendorpo_supplier_category": data['supplier_category'],
             "country": data.get('country'),
             "transaction_type": "reseller",
@@ -163,31 +160,31 @@ def index():
                 <input type="text" id="organization_id" name="organization_id" required value="{{ request.form.get('organization_id', '') }}">
                 
                 <label for="customer_name">Customer Name:</label>
-                <input type="text" id="customer_name" name="customer_name" value="{{ request.form.get('customer_name', '') }}">
+                <input type="text" id="customer_name" name="customer_name" required value="{{ request.form.get('customer_name', '') }}">
                 
                 <label for="supplier_id">Supplier ID:</label>
                 <input type="text" id="supplier_id" name="supplier_id" required value="{{ request.form.get('supplier_id', '') }}">
                 
                 <label for="supplier_name">Supplier Name:</label>
-                <input type="text" id="supplier_name" name="supplier_name" value="{{ request.form.get('supplier_name', '') }}">
+                <input type="text" id="supplier_name" name="supplier_name" required value="{{ request.form.get('supplier_name', '') }}">
                 
                 <label for="country">Country:</label>
-                <input type="text" id="country" name="country" value="{{ request.form.get('country', '') }}">
+                <input type="text" id="country" name="country" required value="{{ request.form.get('country', '') }}">
                 
                 <label for="order_created_date">Order Created Date (YYYY-MM-DD):</label>
-                <input type="text" id="order_created_date" name="order_created_date" pattern="\d{4}-\d{2}-\d{2}" placeholder="YYYY-MM-DD" value="{{ request.form.get('order_created_date', '') }}">
+                <input type="text" id="order_created_date" name="order_created_date" pattern="\d{4}-\d{2}-\d{2}" placeholder="YYYY-MM-DD" required value="{{ request.form.get('order_created_date', '') }}">
                 
                 <label for="ship_to_address_line_1">Ship to Address Line 1:</label>
-                <input type="text" id="ship_to_address_line_1" name="ship_to_address_line_1" value="{{ request.form.get('ship_to_address_line_1', '') }}">
+                <input type="text" id="ship_to_address_line_1" name="ship_to_address_line_1" required value="{{ request.form.get('ship_to_address_line_1', '') }}">
                 
                 <label for="ship_to_city">Ship to City:</label>
-                <input type="text" id="ship_to_city" name="ship_to_city" value="{{ request.form.get('ship_to_city', '') }}">
+                <input type="text" id="ship_to_city" name="ship_to_city" required value="{{ request.form.get('ship_to_city', '') }}">
                 
                 <label for="ship_to_region">Ship to Region:</label>
-                <input type="text" id="ship_to_region" name="ship_to_region" value="{{ request.form.get('ship_to_region', '') }}">
+                <input type="text" id="ship_to_region" name="ship_to_region" required value="{{ request.form.get('ship_to_region', '') }}">
                 
                 <label for="ship_to_country">Ship to Country:</label>
-                <input type="text" id="ship_to_country" name="ship_to_country"  value="{{ request.form.get('ship_to_country', '') }}">
+                <input type="text" id="ship_to_country" name="ship_to_country" required value="{{ request.form.get('ship_to_country', '') }}">
                 
                 <label for="quotation_number">Quotation Number:</label>
                 <input type="text" id="quotation_number" name="quotation_number" value="{{ request.form.get('quotation_number', '') }}">
@@ -218,5 +215,9 @@ def index():
     return render_template_string(html_template, predicted_cost=None, ship_fee=None)
 
 
+def open_browser():
+    webbrowser.open_new('http://127.0.0.1:5001/')
+
 if __name__ == '__main__':
-    app.run()
+    Timer(1, open_browser).start()
+    app.run(port=5001, debug=True, use_reloader=False)
