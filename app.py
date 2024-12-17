@@ -172,19 +172,19 @@ def index():
                 <input type="text" id="country" name="country" required value="{{ request.form.get('country', '') }}">
                 
                 <label for="order_created_date">Order Created Date (YYYY-MM-DD):</label>
-                <input type="text" id="order_created_date" name="order_created_date" pattern="\d{4}-\d{2}-\d{2}" placeholder="YYYY-MM-DD" required value="{{ request.form.get('order_created_date', '') }}">
+                <input type="text" id="order_created_date" name="order_created_date" pattern="\d{4}-\d{2}-\d{2}" placeholder="YYYY-MM-DD"  value="{{ request.form.get('order_created_date', '') }}">
                 
                 <label for="ship_to_address_line_1">Ship to Address Line 1:</label>
-                <input type="text" id="ship_to_address_line_1" name="ship_to_address_line_1" required value="{{ request.form.get('ship_to_address_line_1', '') }}">
+                <input type="text" id="ship_to_address_line_1" name="ship_to_address_line_1"  value="{{ request.form.get('ship_to_address_line_1', '') }}">
                 
                 <label for="ship_to_city">Ship to City:</label>
-                <input type="text" id="ship_to_city" name="ship_to_city" required value="{{ request.form.get('ship_to_city', '') }}">
+                <input type="text" id="ship_to_city" name="ship_to_city"  value="{{ request.form.get('ship_to_city', '') }}">
                 
                 <label for="ship_to_region">Ship to Region:</label>
-                <input type="text" id="ship_to_region" name="ship_to_region" required value="{{ request.form.get('ship_to_region', '') }}">
+                <input type="text" id="ship_to_region" name="ship_to_region"  value="{{ request.form.get('ship_to_region', '') }}">
                 
                 <label for="ship_to_country">Ship to Country:</label>
-                <input type="text" id="ship_to_country" name="ship_to_country" required value="{{ request.form.get('ship_to_country', '') }}">
+                <input type="text" id="ship_to_country" name="ship_to_country"  value="{{ request.form.get('ship_to_country', '') }}">
                 
                 <label for="quotation_number">Quotation Number:</label>
                 <input type="text" id="quotation_number" name="quotation_number" value="{{ request.form.get('quotation_number', '') }}">
